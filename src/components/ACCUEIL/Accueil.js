@@ -12,7 +12,15 @@ const Accueil = () => {
   });
 
   return (
-    <section className="bg-hero bg-cover h-full">
+    <section
+      className="bg-hero bg-cover h-full"
+      style={{
+        backgroundImage: `url(${
+          dataAccueil && dataAccueil.fields.imageFond.fields.file.url
+        })`,
+      }}
+    >
+      {console.log(dataAccueil)}
       <div className="container m-auto h-full flex items-center text-center w-2/3">
         <h1 className="border-y-2 border-white text-white font-bold w-full text-4xl lg:text-8xl py-10">
           {dataAccueil ? dataAccueil.fields.titrePageAccueil : null}
