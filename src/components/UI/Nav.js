@@ -9,7 +9,6 @@ import logo from '../../logo/logo.png';
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [breakpointMenu, setBreakPointMenu] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
