@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { fetchContentfulEntriesGalerie } from '../../contentFul/queryRequest';
 import { useQuery } from 'react-query';
 import Button from '../UI/Button';
@@ -10,32 +10,28 @@ const Galerie = () => {
   const [tags, setTags] = useState([]);
   const [activeTag, setActiveTag] = useState();
 
-  const { data } = useQuery(
-    'contentfulEntriesGalerie',
-    fetchContentfulEntriesGalerie,
-    {
-      onSuccess: (data) => {
-        const allTags = new Set();
-        data.map((image) => {
-          const imageInfo = {
-            name: image.fields.titre,
-            url: image.fields.image.fields.file.url,
-            tag: image.fields.tags.map((t) => t),
-          };
-          imageInfo.tag.forEach((tag) => {
-            if (tag !== 'Tous') {
-              allTags.add(tag);
-            }
-          });
-          setTags(Array.from(allTags));
-          return setDataGalerie((prevDataGalerie) => [
-            ...prevDataGalerie,
-            imageInfo,
-          ]);
+  useQuery('contentfulEntriesGalerie', fetchContentfulEntriesGalerie, {
+    onSuccess: (data) => {
+      const allTags = new Set();
+      data.map((image) => {
+        const imageInfo = {
+          name: image.fields.titre,
+          url: image.fields.image.fields.file.url,
+          tag: image.fields.tags.map((t) => t),
+        };
+        imageInfo.tag.forEach((tag) => {
+          if (tag !== 'Tous') {
+            allTags.add(tag);
+          }
         });
-      },
+        setTags(Array.from(allTags));
+        return setDataGalerie((prevDataGalerie) => [
+          ...prevDataGalerie,
+          imageInfo,
+        ]);
+      });
     },
-  );
+  });
 
   const filterImage = () => {
     if (activeTag) {

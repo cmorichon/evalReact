@@ -7,15 +7,11 @@ import Title from '../UI/Title';
 const Tarifs = () => {
   const [dataTarifs, setDataTarif] = useState();
 
-  const { data } = useQuery(
-    'contentfulEntriesTarifs',
-    fetchContentfulEntriesTarifs,
-    {
-      onSuccess: (data) => {
-        setDataTarif(data);
-      },
+  useQuery('contentfulEntriesTarifs', fetchContentfulEntriesTarifs, {
+    onSuccess: (data) => {
+      setDataTarif(data);
     },
-  );
+  });
 
   return (
     <section className="container m-auto h-full ">

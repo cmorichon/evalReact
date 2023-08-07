@@ -5,15 +5,11 @@ import { fetchContentfulEntriesAccueil } from '../../contentFul/queryRequest';
 const Accueil = () => {
   const [dataAccueil, setDataAcceuil] = useState();
 
-  const { data } = useQuery(
-    'contentfulEntriesAccueil',
-    fetchContentfulEntriesAccueil,
-    {
-      onSuccess: (data) => {
-        setDataAcceuil(...data);
-      },
+  useQuery('contentfulEntriesAccueil', fetchContentfulEntriesAccueil, {
+    onSuccess: (data) => {
+      setDataAcceuil(...data);
     },
-  );
+  });
 
   return (
     <section className="bg-hero bg-cover h-full">
