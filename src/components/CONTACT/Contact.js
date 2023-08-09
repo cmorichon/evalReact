@@ -1,11 +1,15 @@
 import React from 'react';
 import { useForm, ValidationError } from '@formspree/react';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import Button from '../UI/Button';
 import Title from '../UI/Title';
 import { toast } from 'react-toastify';
 
 const Contact = () => {
-  const [state, handleSubmit] = useForm('mgejordk');
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  const [state, handleSubmit] = useForm('mgejordk', {
+    data: { 'g-recaptcha-response': executeRecaptcha },
+  });
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();

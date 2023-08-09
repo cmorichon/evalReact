@@ -7,6 +7,7 @@ import Contact from './components/CONTACT/Contact';
 import Nav from './components/UI/Nav';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 function App() {
   return (
@@ -18,7 +19,15 @@ function App() {
         <Routes>
           <Route exact path="/galerie" element={<Galerie />} />
           <Route exact path="/tarifs" element={<Tarifs />} />
-          <Route exact path="/contact" element={<Contact />} />
+          <Route
+            exact
+            path="/contact"
+            element={
+              <GoogleReCaptchaProvider reCaptchaKey="6LdYXZEnAAAAAKi9xVkp1g_8Zwh8Hj2sfFk8I7rh">
+                <Contact />
+              </GoogleReCaptchaProvider>
+            }
+          />
           <Route exact path="/" element={<Accueil />} />
           <Route exact path="/*" element={<Accueil />} />
         </Routes>
