@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import Button from '../UI/Button';
@@ -11,46 +11,46 @@ const Contact = () => {
     data: { 'g-recaptcha-response': executeRecaptcha },
   });
 
+  useEffect(() => {
+    if (state.succeeded) {
+      toast.success('🍾 Message envoyé avec succès', {
+        position: 'bottom-left',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    } else if (state.errors) {
+      toast.error("🛑 Le message n'a pas été envoyé", {
+        position: 'bottom-left',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    } else if (state.submitting) {
+      toast.info("🍉 Le message est en cours d'envoi", {
+        position: 'bottom-left',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    }
+  }, [state.succeeded, state.errors, state.submitting]);
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     await handleSubmit(e);
-    switch (state) {
-      case state.succeeded:
-        return toast.success('🍉 Message envoyé avec succès', {
-          position: 'bottom-left',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
-      case state.errors:
-        return toast.error("🍉 Le message n'a pas été envoyé", {
-          position: 'bottom-left',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
-      case state.submitting:
-        return toast.info("🍉 Le message est en cours d'envoi", {
-          position: 'bottom-left',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
-      default:
-        return null;
-    }
   };
 
   return (

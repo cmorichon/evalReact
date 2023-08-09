@@ -33,7 +33,7 @@ function App() {
         </Routes>
       </main>
       <footer>
-        <div className="bottom-5 right-5 flex p-2 rounded fixed">
+        <div className="bottom-5 left-5 flex p-2 rounded fixed">
           <a
             className="text-gray-700 font-medium px-3 py-1 rounded shadow bg-sky-50 border-sky-700 p-6 ring-2 ring-sky-600 hover:bg-sky-700 hover:text-white "
             href="https://be.contentful.com/login"
