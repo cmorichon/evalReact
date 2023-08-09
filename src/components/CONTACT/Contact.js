@@ -51,6 +51,9 @@ const Contact = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     await handleSubmit(e);
+    for (const form of document.getElementsByTagName('form')) {
+      form.reset();
+    }
   };
 
   return (
