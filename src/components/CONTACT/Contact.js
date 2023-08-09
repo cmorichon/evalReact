@@ -14,19 +14,45 @@ const Contact = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     await handleSubmit(e);
-    if (state.succeeded) {
-      toast.success('🍉 Message envoyé avec succès', {
-        position: 'bottom-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+    switch (state) {
+      case state.succeeded:
+        return toast.success('🍉 Message envoyé avec succès', {
+          position: 'bottom-left',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      case state.errors:
+        return toast.error("🍉 Le message n'a pas été envoyé", {
+          position: 'bottom-left',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      case state.submitting:
+        return toast.info("🍉 Le message est en cours d'envoi", {
+          position: 'bottom-left',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      default:
+        return null;
     }
   };
+
   return (
     <section className="container mx-auto h-full">
       <Title content="Contactez-nous" />
