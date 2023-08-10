@@ -35,8 +35,8 @@ const Nav = () => {
   ];
   return (
     <>
-      <div className="flex md:flex-row md:h-10 md:items-center py-4 md:py-12 border-b-2 px-10 shadow">
-        <div className="w-1/6 md:w-1/12 ">
+      <div className="flex md:flex-row md:items-center py-3  border-b-2 px-10 shadow bg-white">
+        <div className="w-2/6 md:w-1/12 ">
           <img
             alt="logo"
             className="rounded-full w-2/4"
@@ -56,7 +56,7 @@ const Nav = () => {
         <div className="md:flex grow items-end justify-end hidden ">
           {navigationLink.map((link) => (
             <span
-              key={link.index}
+              key={link.name}
               className="lg:text-2xl px-3 font-medium hover:text-sky-700"
             >
               <Link className="font-display" to={link.link}>
@@ -82,7 +82,7 @@ const Nav = () => {
         <div className="fixed grow justify-end shadow w-full flex py-5 flex-col bg-white t-10 md:hidden">
           {navigationLink.map((link) => (
             <span
-              key={link.index}
+              key={link.name}
               className=" flex mr-10 justify-end px-3 font-medium hover:text-sky-700"
             >
               <Link className="font-display" to={link.link}>

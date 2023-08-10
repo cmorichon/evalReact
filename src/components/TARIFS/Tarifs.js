@@ -16,7 +16,7 @@ const Tarifs = () => {
   return (
     <section className="container m-auto h-full ">
       <Title content="Les tarifs et prestations" />
-      <div class="my-10 grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8 h-[calc(100%-8rem)]">
+      <div class="my-10 grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8 px-4">
         {dataTarifs
           ? dataTarifs.map((elt) => (
               <PriceCard

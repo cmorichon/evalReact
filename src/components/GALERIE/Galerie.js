@@ -57,13 +57,19 @@ const Galerie = () => {
   return (
     <section className="container m-auto ">
       <Title content="La galerie photo" />
-      <Button onClick={(e) => setActiveTag()} content="Tous" />
-      {tags
-        ? tags.map((tag) => (
-            <Button key={tag} onClick={() => setActiveTag(tag)} content={tag} />
-          ))
-        : null}
-      <div className="py-10 grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8 object-cover">
+      <div className="flex flex-wrap">
+        <Button onClick={(e) => setActiveTag()} content="Tous" />
+        {tags
+          ? tags.map((tag) => (
+              <Button
+                key={tag}
+                onClick={() => setActiveTag(tag)}
+                content={tag}
+              />
+            ))
+          : null}
+      </div>
+      <div className="py-10 px-4 grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8 object-cover">
         {dataGalerie ? filterImage() : null}
       </div>
     </section>
